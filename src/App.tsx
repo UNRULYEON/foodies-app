@@ -1,25 +1,40 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
+import AppBar from "./components/AppBar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+import Login from "./components/Login";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { SnackbarProvider } from "notistack";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Poppins",
+  },
+});
 
 function App() {
+  const [user] = useAuthState(auth);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider>
+        <CssBaseline />
+        <Container maxWidth="md" sx={{ height: "100%" }}>
+          <AppBar />
+          {user ? (
+            <Router>
+              <Switch>
+                <Route path="/"></Route>
+              </Switch>
+            </Router>
+          ) : (
+            <Login />
+          )}
+        </Container>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }
 
