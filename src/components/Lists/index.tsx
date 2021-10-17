@@ -6,6 +6,7 @@ import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { UseUserListsSnapshot } from "../../api/lists";
 import ListCard from "../ListCard";
+import Progress from "../Progress";
 
 const Lists = () => {
   const [user] = useAuthState(auth);
@@ -29,7 +30,7 @@ const Lists = () => {
           }
         </>
       ) : (
-        <>loading</>
+        <Progress />
       )}
     </Box>
   );
