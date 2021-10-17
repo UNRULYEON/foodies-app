@@ -16,9 +16,9 @@ const Header = (props: PropsWithChildren<HeaderProps>) => {
       justifyContent="space-between"
       alignItems="center"
       spacing={3}
-      mb={3}
+      mb={1}
     >
-      <Typography>{children}</Typography>
+      <Typography fontWeight="bold">{children}</Typography>
       {action && (
         <IconButton onClick={action} size="small">
           {ActionIcon ? <ActionIcon /> : <MoreVertRoundedIcon />}
