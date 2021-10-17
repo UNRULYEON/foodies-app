@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { SnackbarProvider } from "notistack";
-import { RecoilRoot } from "recoil";
 import CssBaseline from "@mui/material/CssBaseline";
 import reportWebVitals from "./reportWebVitals";
 
@@ -16,14 +15,12 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider>
-          <CssBaseline />
-          <App />
-        </SnackbarProvider>
-      </ThemeProvider>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider>
+        <CssBaseline />
+        <App />
+      </SnackbarProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
